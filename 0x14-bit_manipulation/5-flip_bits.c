@@ -1,23 +1,26 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * flip_bits - Function that determines the minimum number of
- * bits to change
- * @n: The value to be modified
- * @m: The value to be modified to
- * Return: The number of bits modified
+ * flip_bits - returns the number of bits I need to flip to get from one number
+ * @n: decimal number 1
+ * @m: decimal number 2
+ * Return: the number of bits I need to change
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int count = 0;
-	unsigned long int xor = n ^ m;
+	int count, i;
 
-	while (xor != 0)
+	count = 0;
+	for (i = 0; i < 64; i++)
 	{
-		if ((xor & 1) != 0)
-			count++;
-		xor = xor >> 1;
-	}
 
+		if (((n >> i) & 1) != ((m >> i) & 1))
+		{
+			count++;
+
+		}
+
+	}
 	return (count);
 }

@@ -1,30 +1,56 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * binary_to_uint - Function that converts binary to decimal
- * @b: Binary passed in as a char array
- * Return: The converted decimal
+* _pow - pow to 2
+* @num: number
+* @n: number of times
+* Return: result to pow to  n number
+*/
+unsigned int _pow(unsigned int num, unsigned int n)
+{
+	unsigned int sum, i;
+
+	sum = 1;
+	for (i = 0; i < n; i++)
+	{
+		sum = sum * num;
+
+	}
+	return (sum);
+}
+
+/**
+ * binary_to_uint - convert Binary to uint
+ * @b: binary number
+ * Return: the converted number or O
  */
 unsigned int binary_to_uint(const char *b)
 {
-	int i, mult = 1, count = 0, sum = 0;
 
+	unsigned int decimal, i, k;
+
+	decimal = 0;
+	i = 0;
+	decimal = 0;
 	if (b == NULL)
 		return (0);
-
-	for (i = 0; b[i] != '\0'; i++)
+	for (k = 0; b[k] != '\0'; k++)
 	{
-		if (b[i] == '0' || b[i] == '1')
-			count++;
-		else
+		if (((b[k]) != '0') && ((b[k]) != '1') && ((b[k]) != '\0'))
 			return (0);
 	}
-
-	for (count -= 1; count >= 0; count--, mult *= 2)
+	k = k - 1;
+	while (b[i] != '\0')
 	{
-		if (b[count] == '1')
-			sum += 1 * mult;
+		if ((b[k - i]) == '1')
+		{
+			if (i == 0)
+				decimal += 1;
+			else
+				decimal += _pow(2, i);
+		}
+		i++;
 	}
-
-	return (sum);
+	return (decimal);
 }

@@ -1,21 +1,21 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * clear_bit - Function that sets a bit to 0 at a particular location
- * @n: Pointer to decimal
- * @index: The binary position to modify
- * Return: 1 if success, -1 if failure
+ * clear_bit - sets the value of a bit to 0 at a given index
+ * @n: decimal number
+ * @index: index
+ * Return: 1 if it worked or -1 if an error occurred
  */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int mask = 1;
+	unsigned long int mask, var;
 
-	if (index >= sizeof(unsigned long int) * 8)
+	var = 0;
+	mask = 1;
+	if (index > 63)
 		return (-1);
-
-	mask = mask << index;
-	mask = ~mask;
-
-	*n = *n & mask;
+	var = *n & ~(mask << index);
+	*n = var;
 	return (1);
 }
